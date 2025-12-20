@@ -1,21 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        Gestion de Estudiantes
-    </title>
+    <title>Sistema de Gestión de Estudiantes</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/index.css">
 </head>
-
 <body>
 
+    <nav class="navbar navbar-dark bg-primary mb-4">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">Gestión Académica</span>
+        </div>
+    </nav>
 
-    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./js/script.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-secondary text-white">
+                        <h5 class="mb-0">Registro de Estudiante</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formularioEstudiante">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre del Estudiante</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Ej: Ana Pérez" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="nota" class="form-label">Nota (0 - 10)</label>
+                                <input type="number" class="form-control" id="nota" placeholder="0" min="0" max="10" step="0.1" required>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-success" onclick="guardarEstudiante()">
+                                    Guardar Estudiante
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div id="seccion-estadisticas" class="mb-4">
+                    <div class="alert alert-info">Estadísticas estudiantes</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">Listado de Estudiantes</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Nota</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-estudiantes">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="public/js/script.js"></script>
+    <script src="public/js/guardar.js"></script>
 </body>
-
 </html>
