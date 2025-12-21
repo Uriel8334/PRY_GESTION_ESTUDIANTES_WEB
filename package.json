@@ -8,18 +8,13 @@
     "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "bootstrap": "^5.3.8",
-    "vite": "^7.3.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Uriel8334/PRY_GESTION_ESTUDIANTES_WEB.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Uriel8334/PRY_GESTION_ESTUDIANTES_WEB/issues"
   },
