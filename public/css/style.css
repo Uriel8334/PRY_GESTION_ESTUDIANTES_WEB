@@ -347,15 +347,25 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
 
 /* === RESPONSIVE === */
 @media (max-width: 991.98px) {
-    /* Header ocupa todo el ancho */
+    /* Header ocupa mitad izquierda; nav ocupará mitad derecha en la misma franja */
     .main-header {
+        position: fixed;
+        top: 0;
         left: 0;
-        padding: 15px 0;
+        right: auto;
+        width: 50%;
+        height: 70px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
     }
     
     .header-content {
         gap: 10px;
-        padding: 0 30px;
+        padding: 0;
+        align-items: center;
     }
     
     /* Ocultar botón hamburguesa */
@@ -373,13 +383,23 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
         font-size: 1rem;
     }
     
-    /* Navegación ahora en el header */
+    /* Navegación ocupa mitad derecha en la misma franja superior */
     nav.page-navigation {
-        width: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: auto;
+        width: 50%;
+        height: 70px;
         transform: none;
-        box-shadow: none;
-        background: transparent;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        background: rgba(var(--color-bar), 1);
         transition: none;
+        z-index: 1;
+    }
+    /* Ajuste de contenido para no ser tapado */
+    .main-content {
+        margin-top: 90px;
     }
     
     .bg-started nav.page-navigation {
@@ -388,16 +408,19 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     
     nav.page-navigation .detail {
         flex-direction: row;
-        padding: 0;
-        height: auto;
+        padding: 0 12px;
+        height: 100%;
+        align-items: center;
+        justify-content: flex-end;
     }
     
-    /* Menú horizontal en el header */
+    /* Menú horizontal a la derecha */
     nav.page-navigation ul {
         flex-direction: row;
-        justify-content: end;
+        justify-content: flex-end;
         gap: 10px;
-        padding: 10px 40px;
+        padding: 0 16px;
+        width: 100%;
     }
     
     nav.page-navigation li {
@@ -422,7 +445,6 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     
     /* Contenido principal sin margen lateral */
     .main-content {
-        margin-top: 70px;
         margin-left: 0;
     }
 }
@@ -448,7 +470,7 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     }
     
     .main-content {
-        margin-top: 70px;
+        margin-top: 90px;
         padding: 15px 10px;
     }
 }
@@ -478,13 +500,27 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     }
     
     .main-content {
-        margin-top: 70px;
+        margin-top: 90px;
         padding: 10px 5px;
     }
 }
 
 /* Barra de navegación al fondo en pantallas muy pequeñas */
 @media (max-width: 500px) {
+    .main-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 70px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    
     nav.page-navigation {
         position: fixed;
         top: auto;
@@ -536,10 +572,7 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     /* Evitar que el contenido quede tapado por la barra inferior */
     .main-content {
         margin-left: 0;
-        padding-bottom: 110px;
-    }
-
-    .main-header {
-        left: 0;
+        margin-top: 90px;
+        padding-bottom: 120px;
     }
 }
