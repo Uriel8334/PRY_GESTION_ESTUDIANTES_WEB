@@ -17,6 +17,8 @@
     "vite": "^7.3.0"
   },
   "scripts": {
+    "iniciar": "vite",
+    "build":"vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
