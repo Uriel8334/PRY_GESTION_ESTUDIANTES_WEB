@@ -4,6 +4,7 @@
 // suponiendo un arreglo global de notas para probar
 let notas = [7, 5, 8, 6, 9, 4, 10];
 
+// ...existing code...
 function calcularEstadisticas() {
     // contadores 
     var aprobados = 0;
@@ -21,9 +22,15 @@ function calcularEstadisticas() {
         reprobados += validarNota(nota).reprobados;
     }
     promedio = sumaNotas / notas.length;
-    determinarEstadoCurso(promedio);
 
-    // mostramos los resultados en consola, en un futuro en cartas de bootstrap
+    // ACTUALIZAR LOS ELEMENTOS HTML
+    document.getElementById('total-estudiantes').textContent = notas.length;
+    document.getElementById('promedio-general').textContent = promedio.toFixed(2);
+    document.getElementById('aprobados').textContent = aprobados;
+    document.getElementById('supletorio').textContent = supletorio;
+    document.getElementById('reprobados').textContent = reprobados;
+
+    // mostramos los resultados en consola
     console.log("Total de estudiantes: " + notas.length);
     console.log("Cantidad de aprobados: " + aprobados);
     console.log("Cantidad de estudiantes en supletorios: " + supletorio);
@@ -39,6 +46,7 @@ function calcularEstadisticas() {
         estadoCurso: determinarEstadoCurso(promedio)
     };
 }
+// ...existing code...
 
 // funcion independiente para validar una nota
 function validarNota(nota) {

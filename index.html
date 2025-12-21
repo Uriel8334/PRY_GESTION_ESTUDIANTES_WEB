@@ -1,76 +1,218 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión de Estudiantes</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/2/27/Logo_ESPE.png">
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./public/css/style.css">
 </head>
-<body>
 
-    <nav class="navbar navbar-dark bg-primary mb-4">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">Gestión Académica</span>
+<body class="bg-started">
+    <!-- HEADER CON TÍTULO -->
+    <header class="main-header">
+        <div class="header-content">
+            <!-- TÍTULO ANIMADO -->
+            <div class="titulo">
+                <h1 data-text="Gestión Académica">
+                    <span data-text="Gestión Académica">Gestión Académica</span>
+                </h1>
+            </div>
+
+            <!-- BOTÓN HAMBURGUESA PARA MÓVIL -->
+            <button class="navbar-toggler d-lg-none" type="button" id="menuToggle">
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+                <span class="toggler-icon"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- NAVEGACIÓN LATERAL FIJA -->
+    <nav class="page-navigation" id="sidebarMenu">
+        <div class="detail">
+            <!-- MENÚ PRINCIPAL -->
+            <ul id="menu">
+                <li data-menuanchor="registro" class="active">
+                    <a href="#registro">
+                        <span>Registro</span>
+                        <div class="nav-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="hp0" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline class="hp0" points="14 2 14 8 20 8" />
+                                <line class="hp0" x1="16" y1="13" x2="8" y2="13" />
+                                <line class="hp0" x1="16" y1="17" x2="8" y2="17" />
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li data-menuanchor="listado">
+                    <a href="#listado">
+                        <span>Listado</span>
+                        <div class="nav-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <line class="wp0" x1="8" y1="6" x2="21" y2="6" />
+                                <line class="wp0" x1="8" y1="12" x2="21" y2="12" />
+                                <line class="wp0" x1="8" y1="18" x2="21" y2="18" />
+                                <line class="wp0" x1="3" y1="6" x2="3.01" y2="6" />
+                                <line class="wp0" x1="3" y1="12" x2="3.01" y2="12" />
+                                <line class="wp0" x1="3" y1="18" x2="3.01" y2="18" />
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li data-menuanchor="estadisticas">
+                    <a href="#estadisticas">
+                        <span>Estadísticas</span>
+                        <div class="nav-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <line class="yp0" x1="18" y1="20" x2="18" y2="10" />
+                                <line class="yp0" x1="12" y1="20" x2="12" y2="4" />
+                                <line class="yp0" x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li data-menuanchor="reportes">
+                    <a href="#reportes">
+                        <span>Reportes</span>
+                        <div class="nav-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path class="jp0" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline class="jp0" points="14 2 14 8 20 8" />
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li data-menuanchor="config">
+                    <a href="#config">
+                        <span>Configuración</span>
+                        <div class="nav-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <circle class="mp0" cx="12" cy="12" r="3" />
+                                <path class="mp0"
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-secondary text-white">
-                        <h5 class="mb-0">Registro de Estudiante</h5>
-                    </div>
-                    <div class="card-body">
-                        <form id="formularioEstudiante">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre del Estudiante</label>
-                                <input type="text" class="form-control" id="nombre" placeholder="Ej: Ana Pérez" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="nota" class="form-label">Nota (0 - 10)</label>
-                                <input type="number" class="form-control" id="nota" placeholder="0" min="0" max="10" step="0.1" required>
-                            </div>
-
-                            <div class="d-grid">
-                                <button type="button" class="btn btn-success" onclick="guardarEstudiante()">
-                                    Guardar Estudiante
-                                </button>
-                            </div>
-                        </form>
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- FORMULARIO -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            <h5 class="mb-0" id="id_registro">Registro de Estudiante</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="formularioEstudiante" class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre del Estudiante</label>
+                                    <input type="text" class="form-control" name="txt_nombre" id="nombre"
+                                        placeholder="Ej: Ana Pérez" required>
+                                    <div class="valid-feedback">
+                                    </div>
+                                    <div class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nota" class="form-label">Nota (0 - 10)</label>
+                                    <input type="number" class="form-control" name="txt_nota" id="nota" placeholder="0"
+                                        min="0" max="10" step="0.1" required>
+                                    <div class="valid-feedback">
+                                    </div>
+                                    <div class="invalid-feedback">
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="button" class="btn btn-primary" id="btn_agregar">
+                                        <!-- onclick="guardarEstudiante()" -->
+                                        Guardar Estudiante
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-8">
-                <div id="seccion-estadisticas" class="mb-4">
-                    <div class="alert alert-info">Estadísticas estudiantes</div>
-                </div>
+                <!-- ESTADÍSTICAS Y TABLA -->
+                <div class="col-lg-8">
+                    <!-- ESTADÍSTICAS -->
+                    <div id="seccion-estadisticas" class="mb-4">
+                        <h5 class="mb-3">Estadísticas del Curso</h5>
+                        <div class="row g-2">
+                            <div class="col-6 col-md-3">
+                                <div class="card text-center stat-card">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Total</h6>
+                                        <p id="total-estudiantes" class="h4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card text-center stat-card">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Promedio</h6>
+                                        <p id="promedio-general" class="h4 mb-0">0.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card text-center stat-card">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Aprobados</h6>
+                                        <p id="aprobados" class="h4 mb-0">0</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card text-center stat-card">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Suple./Reprob.</h6>
+                                        <p class="mb-0"><span id="supletorio" class="h5">0</span> / <span
+                                                id="reprobados" class="h5">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="card">
-                    <div class="card-header">Listado de Estudiantes</div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Nota</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabla-estudiantes">
-                                </tbody>
-                        </table>
+                    <!-- TABLA -->
+                    <div class="card">
+                        <div class="card-header">Listado de Estudiantes</div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Nota</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tabla-estudiantes">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./public/js/script.js"></script>
     <script src="./public/js/guardar.js"></script>
+    
 </body>
+
 </html>
