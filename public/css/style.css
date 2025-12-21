@@ -482,3 +482,64 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
         padding: 10px 5px;
     }
 }
+
+/* Barra de navegación al fondo en pantallas muy pequeñas */
+@media (max-width: 500px) {
+    nav.page-navigation {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 72px;
+        background: rgba(var(--color-bar), 1);
+        box-shadow: 0 -6px 12px rgba(0,0,0,0.16);
+        transform: none;
+        transition: none;
+    }
+
+    nav.page-navigation .detail {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 8px 12px;
+    }
+
+    nav.page-navigation ul {
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        padding: 0;
+        width: 100%;
+    }
+
+    nav.page-navigation li {
+        width: auto;
+    }
+
+    nav.page-navigation ul a {
+        width: 44px;
+        height: 44px;
+    }
+
+    nav.page-navigation ul a span {
+        display: none !important;
+    }
+
+    .nav-svg svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Evitar que el contenido quede tapado por la barra inferior */
+    .main-content {
+        margin-left: 0;
+        padding-bottom: 110px;
+    }
+
+    .main-header {
+        left: 0;
+    }
+}
