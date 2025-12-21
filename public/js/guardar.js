@@ -78,7 +78,7 @@ function guardarEstudiante() {
     var nota = parseFloat(notaInput.value);
     // 2. VALIDACIÓN
     // if (!no_seleccionar(nombre, nota, nombreInput, notaInput)) return;
-    if (!validación(nombre, nota, nombreInput, notaInput)) return;
+    if (!validación(nombreInput.value.trim(), nota, nombreInput, notaInput)) return;
 
     // 3. DETERMINAR ESTADO
     var estado = "Reprobado";
@@ -107,6 +107,7 @@ function guardarEstudiante() {
 
     // 6. ACTUALIZAR INTERFAZ
     agregarFilaTabla(nuevoEstudiante);
+    actualizarEstadisticas();
     limpiarFormulario();
 }
 
@@ -120,7 +121,6 @@ function agregarFilaTabla(estudiante) {
     else if (estudiante.estado === 'Supletorio') claseEstado = 'text-warning fw-bold';
     else claseEstado = 'text-danger fw-bold';
 
-   
     var td = (contenido, claseAsignada) => {
         var celda = document.createElement('td');
         celda.textContent = contenido;
@@ -131,13 +131,35 @@ function agregarFilaTabla(estudiante) {
     };
 
     tr.innerHTML = td(estudiante.nombre).outerHTML + td(estudiante.nota).outerHTML + td(estudiante.estado, claseEstado).outerHTML;
-
     tbody.appendChild(tr);
 }
 
 function limpiarFormulario() {
     document.getElementById('formularioEstudiante').reset();
     document.getElementById('nombre').focus();
+}
+
+function actualizarEstadisticas() {
+    var totalEstudiantes = estudiantes.length;
+    var aprobados = 0;
+    var supletorio = 0;
+    var reprobados = 0;
+    var sumaNotas = 0;
+
+    estudiantes.forEach(function(est) {
+        sumaNotas += est.nota;
+        if (est.estado === 'Aprobado') aprobados++;
+        else if (est.estado === 'Supletorio') supletorio++;
+        else reprobados++;
+    });
+
+    var promedio = totalEstudiantes > 0 ? (sumaNotas / totalEstudiantes).toFixed(2) : '0.00';
+
+    document.getElementById('total-estudiantes').textContent = totalEstudiantes;
+    document.getElementById('promedio-general').textContent = promedio;
+    document.getElementById('aprobados').textContent = aprobados;
+    document.getElementById('supletorio').textContent = supletorio;
+    document.getElementById('reprobados').textContent = reprobados;
 }
 
 btn_Agregar.addEventListener('click', function (event) {
