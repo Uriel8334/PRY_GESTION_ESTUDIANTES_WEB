@@ -31,7 +31,7 @@ function manejarRegistro() {
 
     estudiantes.push(nuevoEstudiante);
     guardarEnStorage(estudiantes);
-    agregarFilaTabla(nuevoEstudiante);
+    renderTabla(estudiantes);
     actualizarEstadisticas(estudiantes);
     limpiarFormulario();
 }
