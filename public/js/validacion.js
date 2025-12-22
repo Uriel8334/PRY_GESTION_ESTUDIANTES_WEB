@@ -40,11 +40,110 @@ function validarNota(nota, notaInput) {
     return false; 
 }
 
+function validarUsuario(usuario, usuarioInput) {
+    usuarioInput.classList.remove('is-invalid', 'is-valid');
+    let errorUsuario = '';
+
+    if (usuario === '') {
+        errorUsuario = 'El usuario es requerido.';
+    } else if (usuario.length < 3) {
+        errorUsuario = 'El usuario debe tener al menos 3 caracteres.';
+    } else {
+        usuarioInput.classList.add('is-valid');
+        return true;
+    }
+
+    if (errorUsuario) {
+        usuarioInput.classList.add('is-invalid');
+        mostrarMensajeError(usuarioInput, errorUsuario);
+    }
+    return false;
+}
+
+function validarContraseñaLogin(password, passwordInput) {
+    passwordInput.classList.remove('is-invalid', 'is-valid');
+    let errorPassword = '';
+
+    if (password === '') {
+        errorPassword = 'La contraseña es requerida.';
+    } else if (password.length < 6) {
+        errorPassword = 'La contraseña debe tener al menos 6 caracteres.';
+    } else {
+        passwordInput.classList.add('is-valid');
+        return true;
+    }
+
+    if (errorPassword) {
+        passwordInput.classList.add('is-invalid');
+        mostrarMensajeError(passwordInput, errorPassword);
+    }
+    return false;
+}
+
+function inicializarValidacionLogin(usuario, password,usuarioInput,passwordInput) {
+    var validarUsuario = validarUsuario(usuario, usuarioInput);
+    var validarPassword = validarContraseñaLogin(password, passwordInput);
+
+    var form = document.getElementById('loginForm');
+    if (form) {
+        form.classList.add('was-validated');
+    }
+
+    return validarUsuario && validarPassword;
+}
+
+function validarLoginAntesDeLlenar() {
+    var usuarioInput = document.getElementById('usuario');
+    var passwordInput = document.getElementById('password');
+    var btnEnter = document.getElementById('btnEnter');
+    var loginForm = document.getElementById('loginForm');
+
+    if (!usuarioInput || !passwordInput || !btnEnter) return;
+
+    // Validar usuario mientras escribe
+    usuarioInput.addEventListener('input', function() {
+        var usuario = usuarioInput.value.trim();
+        validarUsuario(usuario, usuarioInput);
+    });
+
+    // Validar contraseña mientras escribe
+    passwordInput.addEventListener('input', function() {
+        var password = passwordInput.value.trim();
+        validarContraseñaLogin(password, passwordInput);
+    });
+
+    // Validar al enviar el formulario
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var usuario = usuarioInput.value.trim();
+            var password = passwordInput.value.trim();
+
+            var usuarioValido = validarUsuario(usuario, usuarioInput);
+            var passwordValido = validarContraseñaLogin(password, passwordInput);  // CORREGIDO
+
+            if (usuarioValido && passwordValido) {
+                // Guardar sesión y redirigir
+                localStorage.setItem("sesionActiva", "true");
+                localStorage.setItem("usuarioActual", usuario);
+
+                if (document.getElementById('recordar').checked) {
+                    localStorage.setItem("usuarioRecordado", usuario);
+                }
+
+                // Redirigir a index.html
+                window.location.href = "../index.html";
+            }
+        });
+    }
+}
+
 // Función principal de validación (al hacer clic en guardar)
-function validacion(nombre, nota, nombreInput, notaInput) {
+function validacionTabla(nombre, nota, nombreInput, notaInput) {
     let esValidoNombre = validarNombre(nombre, nombreInput);
     let esValidoNota = validarNota(nota, notaInput);
-
+    
     var form = document.getElementById('formularioEstudiante');
     if (form) {
         form.classList.add('was-validated');
@@ -71,8 +170,8 @@ function limpiarMensajeError(input) {
 
 // Función para inicializar validación en tiempo real
 document.addEventListener('DOMContentLoaded', function () {
-    const nombreInput = document.getElementById('nombre');
-    const notaInput = document.getElementById('nota');
+    var nombreInput = document.getElementById('nombre');
+    var notaInput = document.getElementById('nota');
 
     // Validar nombre mientras escribe
     if (nombreInput) {
@@ -88,5 +187,13 @@ document.addEventListener('DOMContentLoaded', function () {
             let nota = parseFloat(notaInput.value);
             validarNota(nota, notaInput);
         });
+    }
+
+});
+
+// Ejecutar SOLO en login.html
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('usuario') && document.getElementById('password')) {
+        validarLoginAntesDeLlenar();
     }
 });

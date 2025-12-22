@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión - Sistema de Gestión</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/2/27/Logo_ESPE.png" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Header -->
+            <div class="login-header">
+                <h1>GESTIÓN ACADÉMICA</h1>
+                <p>Inicia sesión para continuar</p>
+            </div>
+
+            <!-- Body -->
+            <div class="login-body">
+                <form id="loginForm">
+                    <!-- Usuario -->
+                    <div class="mb-3">
+                        <label for="usuario" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario" required>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" required>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <!-- Recordarme -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="recordar" required>
+                        <label class="form-check-label" for="recordar">Recordarme</label>
+                    </div>
+
+                    <!-- Botón SUBMIT (no href) -->
+                    <button type="submit" class="btn btn-primary w-100" id="btnEnter">
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>¿No tienes cuenta? <a href="#">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/js/validacion.js"></script>
+    <script src="../public/js/cambiarLuz.js"></script>
+</body>
+
+</html>

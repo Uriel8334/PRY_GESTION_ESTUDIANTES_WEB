@@ -1,11 +1,11 @@
-// 1. Obtener elementos del HTML
-const botonTema = document.getElementById("configToggle");
-const body = document.body;
+// 1. Declarar variables (se asignarán cuando el DOM esté listo)
+var botonTema = document.getElementById("configToggle");
+var body = document.body;
 
 // 2. Función para inicializar el tema al cargar la página
-function initTheme() {
+function inicioPantalla() {
     // Verificar si el usuario guardó una preferencia anterior
-    const temaGuardado = localStorage.getItem("mode");
+    var temaGuardado = localStorage.getItem("mode");
     
     if (temaGuardado === "dark") {
         // Si guardó modo oscuro, aplicarlo
@@ -17,7 +17,6 @@ function initTheme() {
         body.classList.remove("dark");
         botonTema.classList.add("dark-off");
         botonTema.classList.remove("dark-on");
-        
     }
 }
 
@@ -30,7 +29,6 @@ function cambiarTema() {
         botonTema.classList.remove("dark-on");
         botonTema.classList.add("dark-off");
         localStorage.setItem("mode", "light");
-
     } else {
         // Está en claro, cambiar a oscuro
         body.classList.add("dark");
@@ -40,13 +38,15 @@ function cambiarTema() {
     }
 }
 
-// 4. Cuando la página carga, ejecutar initTheme
-window.addEventListener("load", function() {
-    initTheme();
-});
-
-// 5. Cuando el usuario hace click en el botón, cambiar tema
-botonTema.addEventListener("click", function(e) {
-    e.preventDefault();
-    cambiarTema();
+// 4. Cuando la página carga, inicializar todo
+document.addEventListener("DOMContentLoaded", function() {
+    // Inicializar el tema guardado
+    inicioPantalla();
+    // 5. Agregar listener al botón solo si existe
+    if (botonTema) {
+        botonTema.addEventListener("click", function(e) {
+            e.preventDefault();
+            cambiarTema();
+        });
+    }
 });

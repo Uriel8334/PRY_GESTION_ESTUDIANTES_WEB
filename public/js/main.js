@@ -5,22 +5,22 @@ function inicializar() {
     estudiantes = cargarDelStorage();
     renderTabla(estudiantes);
     actualizarEstadisticas(estudiantes);
-
 }
 
 // Funcion para manejar el registro de un nuevo estudiante como objeto
 function manejarRegistro() {
     var nombreInput = document.getElementById('nombre');
     var notaInput = document.getElementById('nota');
+    
 
     if (!nombreInput || !notaInput) {
         return;
     }
-
+    
     var nombre = nombreInput.value.trim().toUpperCase();
     var nota = parseFloat(notaInput.value);
 
-    if (!validacion(nombreInput.value.trim(), nota, nombreInput, notaInput)) {
+    if (!validacionTabla(nombre, nota, nombreInput, notaInput)) {
         return;
     }
 
@@ -51,5 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (btnAgregar) {
         btnAgregar.addEventListener('click', manejarRegistro);
     }
+
     inicializar();
 });

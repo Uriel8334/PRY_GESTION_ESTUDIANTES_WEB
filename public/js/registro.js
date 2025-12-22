@@ -1,4 +1,5 @@
 // Funcion para manejar el estado del estudiante
+
 function getEstado(nota) {
     if (nota >= 7) return 'Aprobado';
     if (nota >= 5) return 'Supletorio';
