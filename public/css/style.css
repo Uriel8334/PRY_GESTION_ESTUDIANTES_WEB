@@ -12,6 +12,16 @@
     --color-background: 242,234,230;
 }
 
+body.dark {
+    --color-white-black: 20,25,35;
+    --color-black-white: 230,235,245;
+    --color-bar: 10,15,25;
+    --color-bar-detail: 35,45,65;
+    --color-primary: 78,194,108;
+    --color-secondary: 254,230,72;
+    --color-background: 15,20,30;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -344,7 +354,147 @@ nav.page-navigation .active .mp0 { stroke: rgba(18,158,162,1); }
     border-bottom: 2px solid rgba(var(--color-primary), 0.3);
     color: rgba(var(--color-black-white), 0.8);
 }
+/* === TOGGLE COLOR THEME === */
+.config-item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
+nav.page-navigation #configToggle {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.page-navigation #configToggle .nav-svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.page-navigation #configToggle .switch {
+    display: none;
+}
+
+nav.page-navigation #configToggle .switch-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+nav.page-navigation #configToggle .switch-icons svg {
+    width: 22px;
+    height: 22px;
+}
+
+.sndp1 {
+    fill: rgba(255,255,255,0.8);
+    transition: fill 0.3s ease;
+}
+
+nav.page-navigation #configToggle .switch-icons-night,
+nav.page-navigation #configToggle .switch-icons-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estado: Modo Oscuro Activo */
+nav.page-navigation #configToggle.dark-on .switch-icons-night {
+    display: flex;
+}
+
+nav.page-navigation #configToggle.dark-on .switch-icons-day {
+    display: none;
+}
+
+/* Estado: Modo Claro Activo */
+nav.page-navigation #configToggle.dark-off .switch-icons-night {
+    display: none;
+}
+
+nav.page-navigation #configToggle.dark-off .switch-icons-day {
+    display: flex;
+}
+
+/* Efectos Hover */
+nav.page-navigation #configToggle:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+nav.page-navigation #configToggle:hover .sndp1 {
+    fill: rgba(255,255,255,1);
+}
+
+/* Animación Gooey para el switch */
+@keyframes gooeyIn1 {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(6px, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes gooeyIn2 {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-6px, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes gooeyOut1 {
+    0% {
+        transform: translate(6px, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes gooeyOut2 {
+    0% {
+        transform: translate(-6px, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+}
+
+nav.page-navigation #configToggle.dark-on .gooey_bg_1 {
+    animation: gooeyIn1 0.4s ease forwards;
+}
+
+nav.page-navigation #configToggle.dark-on .gooey_bg_2 {
+    animation: gooeyIn2 0.4s ease forwards;
+}
+
+nav.page-navigation #configToggle.dark-off .gooey_bg_1 {
+    animation: gooeyOut1 0.4s ease forwards;
+}
+
+nav.page-navigation #configToggle.dark-off .gooey_bg_2 {
+    animation: gooeyOut2 0.4s ease forwards;
+}
 /* === RESPONSIVE === */
 @media (max-width: 991.98px) {
     /* Header ocupa mitad izquierda; nav ocupará mitad derecha en la misma franja */

@@ -5,6 +5,7 @@ function inicializar() {
     estudiantes = cargarDelStorage();
     renderTabla(estudiantes);
     actualizarEstadisticas(estudiantes);
+
 }
 
 // Funcion para manejar el registro de un nuevo estudiante como objeto
@@ -38,6 +39,14 @@ function manejarRegistro() {
 
 // Inicialización al cargar el DOM
 document.addEventListener('DOMContentLoaded', function () {
+    var menuItems = document.querySelectorAll('nav.page-navigation li');
+    menuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            menuItems.forEach(li => li.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
     var btnAgregar = document.getElementById('btn_agregar');
     if (btnAgregar) {
         btnAgregar.addEventListener('click', manejarRegistro);
